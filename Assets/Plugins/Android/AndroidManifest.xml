@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tonentreprise.planetproject"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <!-- Autoriser l'accès à Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Autoriser la localisation GPS -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Autoriser l'écriture dans le stockage (si nécessaire pour Mapbox) -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="33" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.DeviceDefault.NoActionBar">
+
+        <!-- Activité principale de l'application -->
+        <activity android:name="com.unity3d.player.UnityPlayerActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="landscape">
+
+            <!-- Intent Filter pour indiquer que c'est l'application principale -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+        </activity>
+
+        <!-- Clé Mapbox -->
+        <meta-data android:name="com.mapbox.access_token"
+            android:value="pk.eyJ1IjoiYXl0ZWMxOTQ1IiwiYSI6ImNtN3g5emVmaTAzamIyaXNmYm9uamcyc3kifQ.k8G9kIvUoHuj73CfsBjmdQ" />
+    </application>
+</manifest>
