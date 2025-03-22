@@ -1,19 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
-using TMPro;
-using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
-    
 {
-    public string sceneName;  // Nom de la scène à charger
+    public string sceneName; // Nom de la scène à charger
 
-    // Cette méthode sera appelée lorsque le bouton est cliqué
     public void OnButtonClick()
     {
-        // Charger la scène spécifiée
+        if (string.IsNullOrEmpty(sceneName))
+        {
+            Debug.LogError("Le nom de la scène est vide ou non défini !");
+            return;
+        }
+
+        Debug.Log("Chargement de la scène : " + sceneName);
         SceneManager.LoadScene(sceneName);
     }
 }
