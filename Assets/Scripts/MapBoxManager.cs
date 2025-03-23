@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using Mapbox.Unity.Map;
 using Mapbox.Utils;
 using Mapbox.Unity;
+#if PLATFORM_ANDROID
+using UnityEngine.Android;
+#endif
 
 public class MapboxMapManager : MonoBehaviour
 {
@@ -46,6 +49,19 @@ public class MapboxMapManager : MonoBehaviour
 
     IEnumerator Start()
     {
+#if PLATFORM_ANDROID
+        if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
+        {
+            Permission.RequestUserPermission(Permission.FineLocation);
+            yield return new WaitForSeconds(1f);
+            if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
+            {
+                Debug.LogError("Permission localisation refusée par l'utilisateur.");
+                yield break;
+            }
+        }
+#endif
+
         if (string.IsNullOrEmpty(mapboxToken))
         {
             Debug.LogError("Mapbox Access Token est vide.");
@@ -65,7 +81,6 @@ public class MapboxMapManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         PlaceMarkers();
 
-        // GPS
         if (!Input.location.isEnabledByUser)
         {
             Debug.LogError("Localisation désactivée !");
