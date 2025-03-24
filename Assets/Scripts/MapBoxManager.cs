@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Mapbox.Unity.Map;
 using Mapbox.Utils;
 using Mapbox.Unity;
+using UnityEngine.Networking;
 #if PLATFORM_ANDROID
 using UnityEngine.Android;
 #endif
@@ -12,7 +14,7 @@ public class MapboxMapManager : MonoBehaviour
 {
     [Header("Mapbox Settings")]
     public string mapboxToken = "pk.eyJ1IjoiYXl0ZWMxOTQ1IiwiYSI6ImNtN3g5emVmaTAzamIyaXNmYm9uamcyc3kifQ.k8G9kIvUoHuj73CfsBjmdQ";
-    public Vector2d startLocation = new Vector2d(50.8153, 4.3816);
+    public Vector2d startLocation = new Vector2d(50.838420201988555, 4.322096405101632);
 
     [Header("Zoom Settings")]
     [Range(10f, 22f)]
@@ -22,7 +24,7 @@ public class MapboxMapManager : MonoBehaviour
     public float maxZoom = 18f;
 
     [Header("Pan Settings")]
-    public float panSpeed = 0.0005f;
+    public float panSpeed = 0.000005f; // plus fluide comme Google Maps
 
     [Header("Map Content")]
     public GameObject markerPrefab;
@@ -39,12 +41,22 @@ public class MapboxMapManager : MonoBehaviour
         public double longitude;
     }
 
-    public List<MapPoint> points = new List<MapPoint>
+    [System.Serializable]
+    private class PlanetData
     {
-        new MapPoint { name = "Point1", latitude = 50.8153, longitude = 4.3816 },
-        new MapPoint { name = "Point2", latitude = 50.8160, longitude = 4.3820 }
-    };
+        public string planetName;
+        public double gpsLatitude;
+        public double gpsLongitude;
+        public string prefabId;
+    }
 
+    [System.Serializable]
+    private class PlanetDataList
+    {
+        public List<PlanetData> planets;
+    }
+
+    public List<MapPoint> points = new List<MapPoint>();
     private List<GameObject> spawnedMarkers = new List<GameObject>();
 
     IEnumerator Start()
@@ -76,11 +88,20 @@ public class MapboxMapManager : MonoBehaviour
         GameObject mapObject = new GameObject("MapboxMap");
         map = mapObject.AddComponent<AbstractMap>();
         MapboxAccess.Instance.Configuration.AccessToken = mapboxToken;
+
+        map.OnInitialized += () =>
+        {
+            Debug.Log(" Carte initialisée, chargement des points JSON.");
+            StartCoroutine(LoadJsonCoroutine());
+        };
+
         map.Initialize(startLocation, (int)zoom);
 
-        yield return new WaitForSeconds(2f);
-        PlaceMarkers();
+        StartCoroutine(InitLocation());
+    }
 
+    IEnumerator InitLocation()
+    {
         if (!Input.location.isEnabledByUser)
         {
             Debug.LogError("Localisation désactivée !");
@@ -109,6 +130,55 @@ public class MapboxMapManager : MonoBehaviour
         }
     }
 
+    IEnumerator LoadJsonCoroutine()
+    {
+        string path = Path.Combine(Application.streamingAssetsPath, "planets.json");
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+        UnityWebRequest www = UnityWebRequest.Get(path);
+        yield return www.SendWebRequest();
+
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("Erreur de lecture JSON sur Android : " + www.error);
+            yield break;
+        }
+
+        string json = www.downloadHandler.text;
+#else
+        if (!File.Exists(path))
+        {
+            Debug.LogError("❌ Fichier JSON non trouvé : " + path);
+            yield break;
+        }
+
+        string json = File.ReadAllText(path);
+#endif
+
+        PlanetDataList planetDataList = JsonUtility.FromJson<PlanetDataList>(json);
+
+        if (planetDataList == null || planetDataList.planets == null)
+        {
+            Debug.LogError("❌ Échec du parsing JSON.");
+            yield break;
+        }
+
+        points = new List<MapPoint>();
+
+        foreach (var planet in planetDataList.planets)
+        {
+            points.Add(new MapPoint
+            {
+                name = planet.planetName,
+                latitude = planet.gpsLatitude,
+                longitude = planet.gpsLongitude
+            });
+        }
+
+        Debug.Log($"✅ {points.Count} planètes chargées depuis le fichier JSON.");
+        PlaceMarkers();
+    }
+
     void Update()
     {
         if (map == null) return;
@@ -121,10 +191,14 @@ public class MapboxMapManager : MonoBehaviour
 
     void PlaceMarkers()
     {
+        Debug.Log($"📌 Nombre de points à placer : {points.Count}");
+
         foreach (var point in points)
         {
             Vector2d location = new Vector2d(point.latitude, point.longitude);
             Vector3 worldPosition = map.GeoToWorldPosition(location, true);
+
+            Debug.Log($"🪐 Placer {point.name} → {worldPosition}");
 
             GameObject marker = Instantiate(markerPrefab, worldPosition, Quaternion.identity);
             marker.name = point.name;
@@ -173,7 +247,7 @@ public class MapboxMapManager : MonoBehaviour
             float currMag = (t0.position - t1.position).magnitude;
             float diff = currMag - prevMag;
 
-            zoom += diff * 0.01f;
+            zoom += diff * 0.002f; // plus doux et fluide comme Google Maps
             zoom = Mathf.Clamp(zoom, minZoom, maxZoom);
             map.UpdateMap(map.CenterLatitudeLongitude, zoom);
         }

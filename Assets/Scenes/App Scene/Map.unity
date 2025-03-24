@@ -954,19 +954,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapboxToken: pk.eyJ1IjoiYXl0ZWMxOTQ1IiwiYSI6ImNtN3g5emVmaTAzamIyaXNmYm9uamcyc3kifQ.k8G9kIvUoHuj73CfsBjmdQ
   startLocation:
-    x: 50.8153
-    y: 4.3816
+    x: 50.838420201988555
+    y: 4.322096405101632
   zoom: 16
   zoomSpeed: 0.5
   minZoom: 10
   maxZoom: 20
   panSpeed: 0.002
-  markerPrefab: {fileID: 5040410843036695726, guid: 20f4eca0de203a247a6b08aa55a3bd75, type: 3}
+  markerPrefab: {fileID: 5040410843036695726, guid: 65680e72640f5054a8ae36303fa6ea88, type: 3}
   locationMarkerPrefab: {fileID: 1301272309007336709, guid: c2bf0f63b080b61429612b561b5b0390, type: 3}
-  points:
-  - name: mars
-    latitude: 50.8153
-    longitude: 4.3816
+  points: []
 --- !u!114 &935375452
 MonoBehaviour:
   m_ObjectHideFlags: 0
