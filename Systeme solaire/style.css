@@ -1,0 +1,143 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom right, #0a0a23, #1e1e3f);
+    color: #f0f0f0;
+    animation: fadeIn 1.5s ease-in;
+  }
+  
+  header {
+    text-align: center;
+    padding: 2rem 1rem;
+    animation: slideDown 1s ease-out;
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+    color: #ffd700;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: auto;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    animation: fadeInUp 1.2s ease;
+  }
+  
+  .planet-img {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #888;
+    transition: transform 0.5s ease;
+  }
+  
+  .planet-img:hover {
+    transform: scale(1.03);
+  }
+  
+  .info-block {
+    margin-top: 1.5rem;
+    line-height: 1.8;
+  }
+  
+  .info-block h2 {
+    color: #00d1ff;
+    margin-bottom: 0.5rem;
+  }
+  
+  .info-block p {
+    margin: 0.3rem 0;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes fadeInUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom right, #0a0a23, #1e1e3f);
+    color: #f0f0f0;
+    animation: fadeIn 1.5s ease-in;
+  }
+  
+  header {
+    text-align: center;
+    padding: 2rem 1rem;
+    animation: slideDown 1s ease-out;
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+    color: #ffd700;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: auto;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    animation: fadeInUp 1.2s ease;
+  }
+  
+  .planet-img {
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #888;
+    transition: transform 0.5s ease;
+  }
+  
+  .planet-img:hover {
+    transform: scale(1.03);
+  }
+  
+  .info-block {
+    margin-top: 1.5rem;
+    line-height: 1.8;
+  }
+  
+  .info-block h2 {
+    color: #00d1ff;
+    margin-bottom: 0.5rem;
+  }
+  
+  .info-block p {
+    margin: 0.3rem 0;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes fadeInUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  
