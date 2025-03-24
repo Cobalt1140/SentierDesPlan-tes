@@ -1965,6 +1965,7 @@ GameObject:
   - component: {fileID: 1663305156}
   - component: {fileID: 1663305155}
   - component: {fileID: 1663305154}
+  - component: {fileID: 1663305157}
   - component: {fileID: 1663305153}
   m_Layer: 5
   m_Name: MenuButton
@@ -2061,6 +2062,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1663305157}
+        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1663305155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2099,6 +2112,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1663305151}
   m_CullTransparentMesh: 1
+--- !u!114 &1663305157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1663305151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de7f1142d48bb0a42b57d959b7a3b2c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: Menu (original)
 --- !u!1 &1828601335
 GameObject:
   m_ObjectHideFlags: 0

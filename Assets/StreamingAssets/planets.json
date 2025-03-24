@@ -8,8 +8,8 @@
         },
         {
             "planetName": "earth",
-            "gpsLatitude": 50.83826978699949,
-            "gpsLongitude":4.322235520758909,
+            "gpsLatitude": 50.812592,
+            "gpsLongitude": 4.381109,
             "prefabId": "earth"
         },
         {
