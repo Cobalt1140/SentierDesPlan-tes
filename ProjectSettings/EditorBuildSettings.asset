@@ -5,14 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/App Scene/Menu (original).unity
     guid: e405edcabedd67a4ab7df8d8122f3617
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/App Scene/FirstFR.unity
     guid: fc989fbb2c6c53f47aea382a450ac469
   - enabled: 1
-    path: Assets/Scenes/App Scene/FirstEN.unity
+    path: Assets/Scenes/App Scene/FirstPage.unity
     guid: 6c0bf1e19d9323043b3b2057a9a4fedc
   - enabled: 0
     path: Assets/Scenes/App Scene/SampleScenes (1).unity
@@ -21,8 +21,14 @@ EditorBuildSettings:
     path: Assets/Scenes/App Scene/Map.unity
     guid: ba1a058f8076b784cb8a5ee15d57f04b
   - enabled: 1
-    path: Assets/Scenes/App Scene/planets.unity
+    path: Assets/planets.unity
     guid: e277828e97808db4090e70ff88772124
+  - enabled: 1
+    path: Assets/Scenes/App Scene/Menu.unity
+    guid: a17c224d475b70e458358ec573741175
+  - enabled: 1
+    path: Assets/Scenes/App Scene/Settings.unity
+    guid: bdd90594ae8e6c34fa48524e1914cf65
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: c618d32b751f67544ae2a17845a8d800, type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 34e2c054f7becb84d998769dbed786c8, type: 2}

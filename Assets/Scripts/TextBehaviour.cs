@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,10 +7,14 @@ using UnityEngine.SceneManagement;
 public class TextBehaviour : MonoBehaviour
 {
     public TMP_Text textUI;          // Texte TMP à afficher
-    public string fullText;          // Texte complet à écrire
+    private string fullText;          // Texte complet à écrire
     public string sceneName;         // Nom de la scène à charger
     public float typingSpeed = 0.1f; // Vitesse de frappe
-
+    private Dictionary<string, string[]> traductions = new Dictionary<string, string[]>()
+    {
+        { "French", new string[] { "Imaginez ceci... Les planètes commencent à se déplacer vers la Terre. Elles voyagent dans l’espace, tombent lentement et atterrissent dans des endroits que vous pouvez voir. Vous êtes témoin de cet événement spectaculaire, et vous avez la possibilité de les explorer. Préparez-vous pour une aventure au cœur de l’univers." } },
+        { "English", new string[] { "Imagine this... The planets are starting to move toward Earth. They travel through space, fall slowly, and land in places you can actually see. You are witness to this spectacular event, and you have the opportunity to explore them. Get ready for an adventure into the heart of the universe." } }
+    };
     private bool isTyping = false;
     private bool textFullyDisplayed = false;
 
@@ -54,6 +59,14 @@ public class TextBehaviour : MonoBehaviour
 
     IEnumerator TypeText()
     {
+        int langIndex = PlayerPrefs.GetInt("LanguePreference", 0);
+        string langue = (langIndex == 0) ? "French" : "English";
+
+        if (traductions.ContainsKey(langue))
+        {
+            fullText = traductions[langue][0];
+          
+        }
         isTyping = true;
         textUI.text = "";
 

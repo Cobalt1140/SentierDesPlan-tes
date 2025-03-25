@@ -882,7 +882,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 1, y: -30}
-  m_SizeDelta: {x: 264.63, y: 50}
+  m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &390293216
 MonoBehaviour:
@@ -931,8 +931,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 32
+  m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1122,6 +1122,7 @@ GameObject:
   - component: {fileID: 521679264}
   - component: {fileID: 521679266}
   - component: {fileID: 521679265}
+  - component: {fileID: 521679267}
   m_Layer: 5
   m_Name: settingPanel
   m_TagString: Untagged
@@ -1194,6 +1195,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 521679263}
   m_CullTransparentMesh: 1
+--- !u!114 &521679267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521679263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de7f1142d48bb0a42b57d959b7a3b2c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: Menu
 --- !u!1 &530118253
 GameObject:
   m_ObjectHideFlags: 0
@@ -2828,7 +2842,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1253575727}
-  - component: {fileID: 1253575726}
   - component: {fileID: 1253575728}
   - component: {fileID: 1253575729}
   m_Layer: 0
@@ -2838,34 +2851,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1253575726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1253575725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 285a079aac8fc5f4796de2ff8e3ba316, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Age_Dropdown: {fileID: 0}
-  Langue_Dropdown: {fileID: 0}
-  validerButton: {fileID: 0}
-  panelMappings:
-  - AGE_Index: 0
-    Lang_Index: 0
-    panel: {fileID: 0}
-  - AGE_Index: 1
-    Lang_Index: 0
-    panel: {fileID: 0}
-  - AGE_Index: 0
-    Lang_Index: 1
-    panel: {fileID: 0}
-  - AGE_Index: 1
-    Lang_Index: 1
-    panel: {fileID: 0}
 --- !u!4 &1253575727
 Transform:
   m_ObjectHideFlags: 0
@@ -2896,19 +2881,6 @@ MonoBehaviour:
   Age_Dropdown: {fileID: 1009123380}
   Langue_Dropdown: {fileID: 957763024}
   validerButton: {fileID: 569220691}
-  panelMappings:
-  - AGE_Index: 0
-    Lang_Index: 0
-    panel: {fileID: 0}
-  - AGE_Index: 1
-    Lang_Index: 0
-    panel: {fileID: 0}
-  - AGE_Index: 1
-    Lang_Index: 1
-    panel: {fileID: 0}
-  - AGE_Index: 0
-    Lang_Index: 1
-    panel: {fileID: 0}
 --- !u!114 &1253575729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2921,9 +2893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4c260461c24814b86b894a409346e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuFR: {fileID: 0}
-  menuEN: {fileID: 0}
-  settingsPanel: {fileID: 521679263}
+  LOGOTEXT: {fileID: 390293216}
 --- !u!1 &1288039274
 GameObject:
   m_ObjectHideFlags: 0
@@ -4010,9 +3980,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1253575729}
-        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
-        m_MethodName: CloseSettings
+      - m_Target: {fileID: 521679267}
+        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
+        m_MethodName: OnButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

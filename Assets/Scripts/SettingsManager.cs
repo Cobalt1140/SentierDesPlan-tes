@@ -1,36 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SettingsManager : MonoBehaviour
 {
-    public GameObject menuFR;
-    public GameObject menuEN;
-    public GameObject settingsPanel;
+    public TextMeshProUGUI LOGOTEXT;
 
-    private GameObject previousPanel; // Variable pour stocker le panneau précédent
-
-    // Fonction pour ouvrir les paramètres et enregistrer le menu précédent
-    public void OpenSettings()
+    private Dictionary<string, string[]> translations = new Dictionary<string, string[]>()
     {
-        if (menuFR.activeSelf)
-        {
-            previousPanel = menuFR;
-        }
-        else if (menuEN.activeSelf)
-        {
-            previousPanel = menuEN;
-        }
+        { "French", new string[] { "Parametre" } },
+        { "English", new string[] { "Settings"} }
+    };
 
-        // Activer les paramètres et désactiver le menu actuel
-        settingsPanel.SetActive(true);
-        if (previousPanel != null) previousPanel.SetActive(false);
-    }
-
-    // Fonction pour fermer les paramètres et revenir au menu précédent
-    public void CloseSettings()
+    private void Start()
     {
-        settingsPanel.SetActive(false);
-        if (previousPanel != null) previousPanel.SetActive(true);
+        int ageIndex = PlayerPrefs.GetInt("AgePreference", 0);
+        int langIndex = PlayerPrefs.GetInt("LanguePreference", 0);
+
+        // Définir les langues (modifie les index en fonction des choix du dropdown)
+        string language = (langIndex == 0) ? "French" : "English";
+        bool isAdult = (ageIndex == 0); // 0 = Adulte, 1 = Enfant (modifie selon ton dropdown)
+        if (translations.ContainsKey(language))
+        {
+            LOGOTEXT.text = translations[language][0];
+           
+        }
     }
 }
