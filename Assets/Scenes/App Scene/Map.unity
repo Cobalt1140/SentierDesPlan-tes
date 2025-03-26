@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7f1142d48bb0a42b57d959b7a3b2c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Planets
+  sceneName: ARview
 --- !u!1 &717549485
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,11 +6,15 @@ using UnityEngine;
 public class SettingsManager : MonoBehaviour
 {
     public TextMeshProUGUI LOGOTEXT;
+    public TMP_Dropdown langDropdown;
+    public TMP_Dropdown ageDropdown;
+    public TextMeshProUGUI ageText;
+    public TextMeshProUGUI langText;
 
     private Dictionary<string, string[]> translations = new Dictionary<string, string[]>()
     {
-        { "French", new string[] { "Parametre" } },
-        { "English", new string[] { "Settings"} }
+        { "French", new string[] { "Parametre", "Âge: ", "Langue: " } },
+        { "English", new string[] { "Settings", "Age: ", "Language: "} }
     };
 
     private void Start()
@@ -24,7 +28,12 @@ public class SettingsManager : MonoBehaviour
         if (translations.ContainsKey(language))
         {
             LOGOTEXT.text = translations[language][0];
-           
+            langDropdown.value = langIndex;
+            ageDropdown.value = ageIndex;
+            ageText.text = translations[language][1];
+            langText.text = translations[language][2];
+
+
         }
     }
 }

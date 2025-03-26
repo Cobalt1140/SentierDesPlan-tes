@@ -2037,7 +2037,7 @@ GameObject:
   - component: {fileID: 957763025}
   - component: {fileID: 957763024}
   m_Layer: 5
-  m_Name: 'LAngDropdown '
+  m_Name: 'LangDropdown '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2158,7 +2158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 47, y: -40}
+  m_AnchoredPosition: {x: 73.98, y: -40}
   m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1009123379
@@ -2295,7 +2295,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 47, y: 80}
+  m_AnchoredPosition: {x: 73.98, y: 80}
   m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1016584447
@@ -2894,6 +2894,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LOGOTEXT: {fileID: 390293216}
+  langDropdown: {fileID: 957763024}
+  ageDropdown: {fileID: 1009123380}
+  ageText: {fileID: 153306442}
+  langText: {fileID: 196853720}
 --- !u!1 &1288039274
 GameObject:
   m_ObjectHideFlags: 0
