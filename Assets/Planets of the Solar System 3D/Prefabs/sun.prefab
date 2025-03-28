@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1229251971759408710}
   - component: {fileID: 7400510438367465617}
   - component: {fileID: 1826244757663127942}
+  - component: {fileID: 1424337516767984806}
   m_Layer: 0
   m_Name: sun
-  m_TagString: Actors
+  m_TagString: sun
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,6 +71,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 10
+--- !u!135 &1424337516767984806
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3548356298615962880}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3874492676428625441
 GameObject:
   m_ObjectHideFlags: 0
@@ -4927,7 +4949,7 @@ GameObject:
   - component: {fileID: 561710764160446052}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: sun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
