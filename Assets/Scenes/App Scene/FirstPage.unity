@@ -1007,10 +1007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textUI: {fileID: 332681982}
-  fullText: Imagine this... The planets are starting to move toward Earth. They travel
-    through space, fall slowly, and land in places you can actually see. You are
-    witness to this spectacular event, and you have the opportunity to explore them.
-    Get ready for an adventure into the heart of the universe.
+  nextButton: {fileID: 901172890}
   sceneName: Map
   typingSpeed: 0.05
 --- !u!1 &757283876

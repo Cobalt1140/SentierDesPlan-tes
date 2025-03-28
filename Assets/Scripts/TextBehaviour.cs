@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class TextBehaviour : MonoBehaviour
 {
-    public TMP_Text textUI;          // Texte TMP à afficher
-    private string fullText;          // Texte complet à écrire
-    public string sceneName;         // Nom de la scène à charger
+    public TMP_Text textUI;          // Texte TMP ï¿½ afficher
+    private string fullText;          // Texte complet ï¿½ ï¿½crire
+    public string sceneName;         // Nom de la scï¿½ne ï¿½ charger
     public float typingSpeed = 0.1f; // Vitesse de frappe
     private Dictionary<string, string[]> traductions = new Dictionary<string, string[]>()
     {
-        { "French", new string[] { "Imaginez ceci... Les planètes commencent à se déplacer vers la Terre. Elles voyagent dans l’espace, tombent lentement et atterrissent dans des endroits que vous pouvez voir. Vous êtes témoin de cet événement spectaculaire, et vous avez la possibilité de les explorer. Préparez-vous pour une aventure au cœur de l’univers." } },
+        { "French", new string[] { "Imaginez ceci... Les planetes commencent ï¿½ se dï¿½placer vers la Terre. Elles voyagent dans l'espace, tombent lentement et atterrissent dans des endroits que vous pouvez voir. Vous ï¿½tes tï¿½moin de cet evenement spectaculaire, et vous avez la possibilite de les explorer. Prï¿½parez-vous pour une aventure au coeur de l'univers." } },
         { "English", new string[] { "Imagine this... The planets are starting to move toward Earth. They travel through space, fall slowly, and land in places you can actually see. You are witness to this spectacular event, and you have the opportunity to explore them. Get ready for an adventure into the heart of the universe." } }
     };
     private bool isTyping = false;
@@ -22,13 +22,13 @@ public class TextBehaviour : MonoBehaviour
     {
         if (textUI == null)
         {
-            Debug.LogError("Référence au TMP_Text manquante dans l'inspecteur !");
+            Debug.LogError("Rï¿½fï¿½rence au TMP_Text manquante dans l'inspecteur !");
             return;
         }
 
         if (string.IsNullOrEmpty(fullText))
         {
-            Debug.LogWarning("Le texte à afficher (fullText) est vide.");
+            Debug.LogWarning("Le texte ï¿½ afficher (fullText) est vide.");
         }
 
         StartCoroutine(TypeText());
@@ -38,7 +38,7 @@ public class TextBehaviour : MonoBehaviour
     {
         if (!textFullyDisplayed)
         {
-            Debug.Log(" Texte affiché instantanément.");
+            Debug.Log(" Texte affichï¿½ instantanï¿½ment.");
             StopAllCoroutines();
             textUI.text = fullText;
             textFullyDisplayed = true;
@@ -47,12 +47,12 @@ public class TextBehaviour : MonoBehaviour
         {
             if (!string.IsNullOrEmpty(sceneName))
             {
-                Debug.Log(" Chargement de la scène : " + sceneName);
+                Debug.Log(" Chargement de la scï¿½ne : " + sceneName);
                 SceneManager.LoadScene(sceneName);
             }
             else
             {
-                Debug.LogError("Nom de scène vide !");
+                Debug.LogError("Nom de scï¿½ne vide !");
             }
         }
     }
@@ -65,7 +65,7 @@ public class TextBehaviour : MonoBehaviour
         if (traductions.ContainsKey(langue))
         {
             fullText = traductions[langue][0];
-          
+
         }
         isTyping = true;
         textUI.text = "";
@@ -78,6 +78,6 @@ public class TextBehaviour : MonoBehaviour
 
         isTyping = false;
         textFullyDisplayed = true;
-        Debug.Log(" Texte affiché entièrement.");
+        Debug.Log(" Texte affichï¿½ entiï¿½rement.");
     }
 }
