@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &122726732
 RectTransform:
   m_ObjectHideFlags: 0
@@ -643,7 +643,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Adulte/adult
+  m_text: Enfant/Child
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2230,9 +2230,9 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Adulte/adult
-      m_Image: {fileID: 0}
     - m_Text: Enfant/Child
+      m_Image: {fileID: 0}
+    - m_Text: Adulte/adult
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2893,11 +2893,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4c260461c24814b86b894a409346e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LOGOTEXT: {fileID: 390293216}
   langDropdown: {fileID: 957763024}
   ageDropdown: {fileID: 1009123380}
+  LOGOTEXT: {fileID: 390293216}
   ageText: {fileID: 153306442}
   langText: {fileID: 196853720}
+  validerButton: {fileID: 569220691}
 --- !u!1 &1288039274
 GameObject:
   m_ObjectHideFlags: 0
