@@ -1433,6 +1433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1139339478}
   - component: {fileID: 1139339479}
+  - component: {fileID: 1139339480}
   m_Layer: 0
   m_Name: GPSHandle
   m_TagString: Untagged
@@ -1481,6 +1482,18 @@ MonoBehaviour:
   - {fileID: 3548356298615962880, guid: 5f776740c447e45afb25edbca842de92, type: 3}
   - {fileID: 1014736895960144, guid: c91342f6e3afc48fd958056404ead345, type: 3}
   - {fileID: 1647581975099426, guid: 835acc1a9ebe24c0fa3854c99346f9cd, type: 3}
+--- !u!114 &1139339480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139339476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88d135d494c29394aa765616c60772cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1175406268
 GameObject:
   m_ObjectHideFlags: 0

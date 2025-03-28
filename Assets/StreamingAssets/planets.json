@@ -38,8 +38,8 @@
         },
         {
             "planetName": "pluton",
-            "gpsLatitude": 50.838873240754,
-            "gpsLongitude": 4.322129745951685,
+            "gpsLatitude": 50.879715,
+            "gpsLongitude": 4.405017,
             "prefabId": "pluton"
         },
         {

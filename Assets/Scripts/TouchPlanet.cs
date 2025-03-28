@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+
+public class TouchPlanet : MonoBehaviour
+{
+
+    private List<string> planetList = new List<string> { "earth", "jupiter", "mars",
+        "mercury", "moon", "neptune", "pluton","saturn", "sun", "uranus", "venus" };
+    
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) DetectTouchOrClick(Input.mousePosition);
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+            DetectTouchOrClick(Input.GetTouch(0).position);
+    }
+
+    void DetectTouchOrClick(Vector2 screenPosition)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(screenPosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            
+
+            if (planetList.Contains(hit.transform.tag))
+            {
+                Debug.Log(hit.transform.tag);
+                PlayerPrefs.SetInt(hit.transform.tag, 1);
+                CollectionStatic.setCurrentPlanet(hit.transform.tag);
+                SceneManager.LoadScene("PlanetTextView");
+            }
+            
+        }
+       
+    }
+}

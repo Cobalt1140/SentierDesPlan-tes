@@ -12,8 +12,10 @@ public class PreferencesManager : MonoBehaviour
 
     void Start()
     {
+        
         Debug.Log("PreferencesManager - Start");
-
+        
+        
         if (Age_Dropdown == null) Debug.LogError("Age_Dropdown n'est pas assigné.");
         if (Langue_Dropdown == null) Debug.LogError("Langue_Dropdown n'est pas assigné.");
         if (validerButton == null) Debug.LogError("validerButton n'est pas assigné.");
