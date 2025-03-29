@@ -29,6 +29,7 @@ public class MapboxMapManager : MonoBehaviour
     [Header("Map Content")]
     public GameObject markerPrefab;
     public GameObject locationMarkerPrefab;
+    
 
     private AbstractMap map;
     private GameObject locationMarkerInstance;
@@ -230,6 +231,18 @@ public class MapboxMapManager : MonoBehaviour
             Vector3 worldPos = map.GeoToWorldPosition(userLatLon, true);
 
             locationMarkerInstance.transform.position = worldPos;
+        }
+    }
+
+    public void CenterMapOnUser()
+    {
+        if (locationMarkerInstance != null && Input.location.status == LocationServiceStatus.Running)
+        {
+            double lat = Input.location.lastData.latitude;
+            double lon = Input.location.lastData.longitude;
+            Vector2d userLatLon = new Vector2d(lat, lon);
+            //map.SetCenterLatitudeLongitude(userLatLon);
+            map.Initialize(userLatLon, (int)zoom);
         }
     }
 

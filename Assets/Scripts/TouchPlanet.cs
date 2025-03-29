@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
 public class TouchPlanet : MonoBehaviour
 {
+    public TextMeshProUGUI debugText;
 
     private List<string> planetList = new List<string> { "earth", "jupiter", "mars",
         "mercury", "moon", "neptune", "pluton","saturn", "sun", "uranus", "venus" };
@@ -27,11 +29,14 @@ public class TouchPlanet : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 100f))
         {
-            
+            debugText.text = "PLANET HIT!!:";
+            debugText.text = hit.transform.tag.ToString();
+
+
 
             if (planetList.Contains(hit.transform.tag))
             {
-                Debug.Log(hit.transform.tag);
+                debugText.text = hit.transform.tag.ToString()+" HAS BEEN HIT!";
                 PlayerPrefs.SetInt(hit.transform.tag, 1);
                 CollectionStatic.setCurrentPlanet(hit.transform.tag);
                 SceneManager.LoadScene("PlanetTextView");
