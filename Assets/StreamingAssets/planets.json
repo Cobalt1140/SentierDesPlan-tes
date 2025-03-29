@@ -2,63 +2,69 @@
     "planets": [
         {
             "planetName": "mars",
-            "gpsLatitude": 50.81783726391069,
-            "gpsLongitude": 4.397003958920379,
+            "gpsLatitude": 50.82067569238612,
+            "gpsLongitude": 4.395775264198534,
             "prefabId": "mars"
         },
         {
             "planetName": "earth",
-            "gpsLatitude":50.81780035017982,
-            "gpsLongitude": 4.397721046135075,
+            "gpsLatitude":50.81799316747518,
+            "gpsLongitude":   4.396940306057928,
             "prefabId": "earth"
         },
         {
             "planetName": "jupiter",
-            "gpsLatitude": 50.83836580160573,
-            "gpsLongitude": 4.322110067266067,
+            "gpsLatitude": 50.818157934096945,
+            "gpsLongitude": 4.401093134831456,
             "prefabId": "jupiter"
         },
         {
             "planetName": "mercury",
-            "gpsLatitude": 50.81760909413188,
-            "gpsLongitude":4.397959504527449,
+            "gpsLatitude": 50.81954462131054,
+            "gpsLongitude": 4.396190345771316,
             "prefabId": "mercury"
         },
         {
             "planetName": "moon",
-            "gpsLatitude": 50.81824826359522,
-            "gpsLongitude":4.397213495277811,
+            "gpsLatitude": 50.81783874711377,
+            "gpsLongitude": 4.396922118798329,
             "prefabId": "moon"
         },
         {
             "planetName": "neptune",
-            "gpsLatitude": 50.8384775781592,
-            "gpsLongitude": 4.323408320755277,
+            "gpsLatitude": 50.823413919229694,
+            "gpsLongitude": 4.399313241315014,
             "prefabId": "neptune"
         },
         {
             "planetName": "pluton",
-            "gpsLatitude": 50.879715,
-            "gpsLongitude": 4.405017,
+            "gpsLatitude": 50.82005957046519,
+            "gpsLongitude": 4.393775650817787,
             "prefabId": "pluton"
         },
         {
             "planetName": "saturn",
-            "gpsLatitude": 50.83898135727509,
-            "gpsLongitude": 4.322727142725853,
+            "gpsLatitude": 50.81735669634364,
+            "gpsLongitude": 4.401311690548141,
             "prefabId": "saturn"
         },
         {
             "planetName": "sun",
-            "gpsLatitude": 50.81802835791868,
-            "gpsLongitude":4.396982813902014,
+            "gpsLatitude": 50.81939226797647,
+            "gpsLongitude":4.39775945195467,
             "prefabId": "sun"
         },
         {
             "planetName": "venus",
-            "gpsLatitude": 50.83855579079872,
-            "gpsLongitude": 4.322632433481914,
+            "gpsLatitude": 50.81897167664695,
+            "gpsLongitude": 4.395556463440585,
             "prefabId": "venus"
+        },
+        {
+            "planetName": "uranus",
+            "gpsLatitude": 50.82198439216549,
+            "gpsLongitude": 4.400801360967904,
+            "prefabId": "uranus"
         }
     ]
 }
