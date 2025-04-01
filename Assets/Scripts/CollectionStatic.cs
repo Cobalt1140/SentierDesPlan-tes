@@ -4,6 +4,8 @@ using UnityEngine;
 
 public static class CollectionStatic
 {
+    //Cette classe static va se souvenir de la dernière planète avec laquelle on a interragis, pour la fournir par après dans PlanetTextView
+    
     public static string currentPlanet = "none";
     public static string getCurrentPlanet()
     {

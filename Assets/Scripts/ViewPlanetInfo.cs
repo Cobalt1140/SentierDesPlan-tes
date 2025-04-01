@@ -9,6 +9,7 @@ public class ViewPlanetInfo : MonoBehaviour
     
     void Start()
     {
+        //récup la planète courrante de CollectionStatic
         string currentPlanet = CollectionStatic.getCurrentPlanet();
         title.text = currentPlanet[..1].ToUpper() + currentPlanet[1..];
         //nothing for description rn coz we didn't get shit yet
