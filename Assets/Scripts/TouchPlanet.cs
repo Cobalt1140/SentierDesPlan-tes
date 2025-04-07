@@ -63,7 +63,7 @@ public class TouchPlanet : MonoBehaviour
         Vector3 originalScale = planetTransform.localScale;
 
         float time = 0f;
-        float totalDuration = 1f;
+        float totalDuration = 0.60f;
         float scaleUpDuration = totalDuration * 0.25f;
         float scaleDownDuration = totalDuration - scaleUpDuration;
 
