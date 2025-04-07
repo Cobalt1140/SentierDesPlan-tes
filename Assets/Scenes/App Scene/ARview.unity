@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &40919615
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2436,7 +2436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1828601336
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2565,9 +2565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f79f247fb52cbd4a8f0797e16ea3ad4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugTxt: {fileID: 0}
-  jsonFileName: planets.json
-  planetPrefabs: []
 --- !u!114 &1828601340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2580,7 +2577,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c72b83ae85168b4d9648af172aeda3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugText: {fileID: 0}
 --- !u!1 &2089110258
 GameObject:
   m_ObjectHideFlags: 0
