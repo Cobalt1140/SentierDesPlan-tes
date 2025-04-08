@@ -25,7 +25,7 @@ public class TextBehaviour : MonoBehaviour
             Debug.LogError("R�f�rence au TMP_Text manquante dans l'inspecteur !");
             return;
         }
-
+        
         if (string.IsNullOrEmpty(fullText))
         {
             Debug.LogWarning("Le texte � afficher (fullText) est vide.");

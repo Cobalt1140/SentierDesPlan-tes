@@ -3,37 +3,41 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
-    public TextMeshProUGUI startButtonText;
+    public GameObject playButton;
     public TextMeshProUGUI settingsButtonText;
-    public TextMeshProUGUI mapsButtonText;
     public TextMeshProUGUI rankingButtonText;
     public TextMeshProUGUI titleText;
-    
-    // public GameObject adultContent;
-    // public GameObject childContent;
 
+    private bool isTutorialFinished;
+    
+ 
     private Dictionary<string, string[]> translations = new Dictionary<string, string[]>()
     {
-        { "French", new string[] { "Commencer", "Parametre", "Maps","Classement", "Le sentier des Planètes" } },
-        { "English", new string[] { "Start", "Settings", "Maps", "Ranking", "The Planet Trail" } }
+        { "French", new string[] { "Commencer", "Paramètres", "Carte","Classement", "Le sentier des Planètes" } },
+        { "English", new string[] { "Start", "Settings", "Map", "Rankings", "The Planet Trail" } }
     };
 
     void Start()
     {
-        int ageMode = getAgePreference();
-        int langMode = getLangPreference();
-        switchToIntroPreferences(ageMode, langMode);
-        ApplyPreferences(ageMode, langMode);
+        
+        int ageIndex = getAgePreference(); //0 = child, 1 = adult
+        int langIndex = getLangPreference(); // 0 = FR; 1 = EN
+        if (ageIndex == -1 || langIndex == -1) //si première fois qu'on joue, redirige vers paramètres
+        {
+            SceneManager.LoadScene("Settings");
+        }
+        isTutorialFinished = PlayerPrefs.GetInt("tutorial", -1) != -1; //0 = pas finis tuto; 1 = finis tuto
+        ApplyPreferences(ageIndex, langIndex);
     }
 
     int getAgePreference()
     {
         Debug.Log(PlayerPrefs.GetInt("AgePreference", -1));
         return PlayerPrefs.GetInt("AgePreference", -1);
-
     }
 
     int getLangPreference()
@@ -48,14 +52,22 @@ public class MenuManager : MonoBehaviour
         
         // Définir les langues (modifie les index en fonction des choix du dropdown)
         string language = (langIndex == 0) ? "French" : "English";
-        bool isAdult = (ageIndex == 0); // 0 = Adulte, 1 = Enfant (modifie selon ton dropdown)
+        bool isAdult = (ageIndex == 0); // 0 = child, 1 = adult (modifie selon ton dropdown)
         
         // Appliquer la langue aux boutons
         if (translations.ContainsKey(language))
         {
-            startButtonText.text = translations[language][0];
+            if (!isTutorialFinished)
+            {
+                playButton.GetComponentInChildren<TextMeshProUGUI>().text = translations[language][0];
+                playButton.GetComponent<Button>().onClick.AddListener(() => switchScenes("FirstPage"));
+            } else
+            {
+                playButton.GetComponentInChildren<TextMeshProUGUI>().text = translations[language][2];
+                playButton.GetComponent<Button>().onClick.AddListener(() => switchScenes("Map"));
+            }
+            
             settingsButtonText.text = translations[language][1];
-            mapsButtonText.text = translations[language][2];
             rankingButtonText.text = translations[language][3];
             titleText.text = translations[language][4];
         }
@@ -66,12 +78,10 @@ public class MenuManager : MonoBehaviour
         //childContent.SetActive(!isAdult);
     }
 
-    void switchToIntroPreferences(int ageIndex, int langIndex)
+    private void switchScenes(string scene)
     {
-        //switch to Intro Preferences if first time or aren't set up
-        if (ageIndex == -1 && langIndex == -1)
-        {
-            SceneManager.LoadScene("IntroPreferences");
-        } 
+        SceneManager.LoadScene(scene);
     }
+
+    
 }

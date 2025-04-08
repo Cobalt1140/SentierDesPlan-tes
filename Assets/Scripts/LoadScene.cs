@@ -5,7 +5,7 @@ public class LoadScene : MonoBehaviour
 {
     public string sceneName; // Nom de la scène à charger
 
-    public void OnButtonClick()
+    public void SwitchScene()
     {
         if (string.IsNullOrEmpty(sceneName))
         {

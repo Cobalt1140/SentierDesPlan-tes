@@ -12,14 +12,12 @@ public class textBrut : MonoBehaviour
     public void OnButtonClick()
     {
         clickCount++;
-        Debug.Log(" Bouton cliqué - Count: " + clickCount);
 
         if (clickCount == 1)
         {
             if (text != null)
             {
                 text.text = fullText;
-                Debug.Log(" Texte affiché : " + fullText);
             }
             else
             {
@@ -30,7 +28,6 @@ public class textBrut : MonoBehaviour
         {
             if (!string.IsNullOrEmpty(sceneName))
             {
-                Debug.Log(" Chargement de la scène : " + sceneName);
                 SceneManager.LoadScene(sceneName);
             }
             else

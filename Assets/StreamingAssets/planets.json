@@ -32,8 +32,8 @@
         },
         {
             "planetName": "neptune",
-            "gpsLatitude": 50.8384775781592,
-            "gpsLongitude": 4.323408320755277,
+            "gpsLatitude": 50.879700,
+            "gpsLongitude": 4.404759,
             "prefabId": "neptune"
         },
         {

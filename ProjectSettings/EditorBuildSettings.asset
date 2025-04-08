@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/App Scene/Menu.unity
     guid: a17c224d475b70e458358ec573741175
   - enabled: 1
-    path: Assets/Scenes/App Scene/IntroPreferences.unity
-    guid: 429dce17a5678f240b891d166d024e73
-  - enabled: 1
     path: Assets/Scenes/App Scene/FirstPage.unity
     guid: 6c0bf1e19d9323043b3b2057a9a4fedc
   - enabled: 1
