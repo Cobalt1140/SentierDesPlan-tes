@@ -2,20 +2,20 @@
     "planets": [
         {
             "planetName": "mars",
-            "gpsLatitude": 50.81783726391069,
-            "gpsLongitude": 4.397003958920379,
+            "gpsLatitude": 50.819698,
+            "gpsLongitude": 4.399189,
             "prefabId": "mars"
         },
         {
             "planetName": "earth",
-            "gpsLatitude":50.81780035017982,
-            "gpsLongitude": 4.397721046135075,
+            "gpsLatitude":50.819962,
+            "gpsLongitude": 4.399580,
             "prefabId": "earth"
         },
         {
             "planetName": "jupiter",
-            "gpsLatitude": 50.83836580160573,
-            "gpsLongitude": 4.322110067266067,
+            "gpsLatitude": 50.819756,
+            "gpsLongitude": 4.399589,
             "prefabId": "jupiter"
         },
         {
@@ -38,8 +38,8 @@
         },
         {
             "planetName": "pluton",
-            "gpsLatitude": 50.819916,
-            "gpsLongitude": 4.399480,
+            "gpsLatitude": 50.820080,
+            "gpsLongitude": 4.399698,
             "prefabId": "pluton"
         },
         {

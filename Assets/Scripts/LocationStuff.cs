@@ -10,12 +10,17 @@ public class LocationStuff : MonoBehaviour
 {
     [Header("UI Debug")]
     public TMP_Text debugTxt;
+    public TMP_Text secondDebugText;
 
     [Header("JSON")]
     public string jsonFileName = "planets.json";  // Nom du fichier JSON dans StreamingAssets
 
     [Header("List of Prefabs (names must match prefabId)")]
     public List<GameObject> planetPrefabs; // Dans l'Inspector, ajoute tes prefabs (earth, mars, etc.)
+
+    [Header("UI Arrow")]
+    public RectTransform arrowUI;  // Assign in Inspector (a UI arrow image)
+    public Camera mainCamera;      // Reference to main AR camera
 
     // Dictionnaire: prefabId -> Prefab
     private Dictionary<string, GameObject> prefabDictionary = new Dictionary<string, GameObject>();
@@ -101,7 +106,7 @@ public class LocationStuff : MonoBehaviour
 
         if (Input.location.status != LocationServiceStatus.Running)
         {
-            if (debugTxt) debugTxt.text = "GPS is disabled or not running.";
+            if (debugTxt) debugTxt.text = "GPS is disabled or not running."; //TODO ajouter un élément qui indique à l'utilisateur que la permission pour la caméra n'est pas permise
             return;
         }
 
@@ -150,6 +155,58 @@ public class LocationStuff : MonoBehaviour
                 instantiatedObjects[planet.planetName].transform.position = newPos;
             }
         }
+        
+        // --- Find the closest planet ---
+        GameObject closestPlanet = null;
+        double closestDist = double.MaxValue;
+        secondDebugText.text = "";
+        foreach (var kvp in instantiatedObjects)
+        {
+            GameObject planetObj = kvp.Value;
+            double dist = Vector3.Distance(planetObj.transform.position, Camera.main.transform.position);
+            secondDebugText.text += "\n Planet: " + planetObj.name + " " + dist;
+            if (dist < closestDist)
+            {
+                closestDist = dist;
+                closestPlanet = planetObj;
+                
+            }
+        }
+        secondDebugText.text += "\n Closest Planet: " + closestPlanet.name + " " + closestDist.ToString();
+
+        // --- Update Arrow Rotation ---
+        if (closestPlanet != null && arrowUI != null)
+        {
+            arrowUI.gameObject.SetActive(true);
+            
+            Vector3 toPlanet = closestPlanet.transform.position - Camera.main.transform.position;
+            Vector3 camForward = Camera.main.transform.forward;
+
+            // Project direction onto horizontal plane
+            Vector3 flatToPlanet = Vector3.ProjectOnPlane(toPlanet, Vector3.up);
+            Vector3 flatForward = Vector3.ProjectOnPlane(camForward, Vector3.up);
+
+            float angle = Vector3.SignedAngle(flatForward, flatToPlanet, Vector3.up);
+
+            arrowUI.localEulerAngles = new Vector3(0, 0, -angle);  // Negative because UI rotates opposite
+            
+            /*
+            Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
+            Vector3 planetScreenPos = mainCamera.WorldToScreenPoint(closestPlanet.transform.position);
+
+            Vector2 direction = (planetScreenPos - screenCenter).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            arrowUI.rotation = Quaternion.Euler(0, 0, angle - 90);  // Subtract 90 if your arrow points up
+            secondDebugText.text += "\n Angle: "+angle;
+            */
+
+        } else
+        {
+            arrowUI.gameObject.SetActive(false);
+            secondDebugText.text += "\n Closest Planet is null";
+        }
+
 
         if (debugTxt) debugTxt.text = info;
     }

@@ -1832,6 +1832,7 @@ MonoBehaviour:
   settingsButtonText: {fileID: 1988018927}
   mapsButtonText: {fileID: 1420226212}
   rankingButtonText: {fileID: 661295303}
+  titleText: {fileID: 1511593771}
 --- !u!1 &1259412828
 GameObject:
   m_ObjectHideFlags: 0

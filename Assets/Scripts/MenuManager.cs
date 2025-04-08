@@ -10,14 +10,15 @@ public class MenuManager : MonoBehaviour
     public TextMeshProUGUI settingsButtonText;
     public TextMeshProUGUI mapsButtonText;
     public TextMeshProUGUI rankingButtonText;
+    public TextMeshProUGUI titleText;
     
     // public GameObject adultContent;
     // public GameObject childContent;
 
     private Dictionary<string, string[]> translations = new Dictionary<string, string[]>()
     {
-        { "French", new string[] { "Commencer", "Parametre", "Maps","Classement" } },
-        { "English", new string[] { "Start", "Settings", "Maps", "Ranking" } }
+        { "French", new string[] { "Commencer", "Parametre", "Maps","Classement", "Le sentier des Planètes" } },
+        { "English", new string[] { "Start", "Settings", "Maps", "Ranking", "The Planet Trail" } }
     };
 
     void Start()
@@ -56,6 +57,7 @@ public class MenuManager : MonoBehaviour
             settingsButtonText.text = translations[language][1];
             mapsButtonText.text = translations[language][2];
             rankingButtonText.text = translations[language][3];
+            titleText.text = translations[language][4];
         }
         
 

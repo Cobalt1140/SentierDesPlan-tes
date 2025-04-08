@@ -1100,7 +1100,7 @@ MonoBehaviour:
   startLocation:
     x: 50.81802835791868
     y: 4.396982813902014
-  zoom: 16
+  zoom: 14
   zoomSpeed: 0.5
   minZoom: 10
   maxZoom: 20
