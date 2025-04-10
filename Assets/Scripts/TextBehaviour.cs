@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class TextBehaviour : MonoBehaviour
 {
     public TMP_Text textUI;          // Texte TMP � afficher
@@ -12,8 +13,8 @@ public class TextBehaviour : MonoBehaviour
     public float typingSpeed = 0.1f; // Vitesse de frappe
     private Dictionary<string, string[]> traductions = new Dictionary<string, string[]>()
     {
-        { "French", new string[] { "Imaginez ceci... Les planetes commencent à se déplacer vers la Terre. Elles voyagent dans l'espace, tombent lentement et atterrissent dans des endroits que vous pouvez voir. Vous êtes témoin de cet evenement spectaculaire, et vous avez la possibilite de les explorer. Préparez-vous pour une aventure au coeur de l'univers." } },
-        { "English", new string[] { "Imagine this... The planets are starting to move toward Earth. They travel through space, fall slowly, and land in places you can actually see. You are witness to this spectacular event, and you have the opportunity to explore them. Get ready for an adventure into the heart of the universe." } }
+        { "French", new string[] { "" } },
+        { "English", new string[] { "" } }
     };
     private bool isTyping = false;
     private bool textFullyDisplayed = false;

@@ -21,7 +21,7 @@ public class CollectionManager : MonoBehaviour
     void Start()
     {
         //ce code est du dogshit, à refaire par après
-        //en gros, pour chaque PlayerPrefs.GetInt(planet) qu'on a dans l'application (donc pour chaque planète implémentée dans le jeu, 
+        //en gros, pour chaque PlayerPrefs.GetInt(planet) qu'on a dans l'application (donc pour chaque planète implémentée dans le jeu), 
         //on check si l'utilisateur l'a déjà récupéré. Si l'utilisateur ne l'a jamais récup, ca retourne la valeur par défaut -1, si il l'a récup,
         //alors ça retourne 1, donc différent de -1, ce qui change le texte du TMPGUI fournis en public correspondant.
         
