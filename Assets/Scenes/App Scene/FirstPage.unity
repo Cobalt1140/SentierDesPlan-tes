@@ -296,10 +296,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Imagine this... The planets are starting to move toward Earth. They travel
-    through space, fall slowly, and land in places you can actually see. You are
-    witness to this spectacular event, and you have the opportunity to explore them.
-    Get ready for an adventure into the heart of the universe.
+  m_text: "Bienvenue au Sentier des Plan\xE8tes! Votre objectif est de naviguer le
+    campus de la Plaine en recherche des corps c\xE9lestes qui composent notre syst\xE8me
+    solaire. Utilisez la carte pour vous retrouver \xE0 proximit\xE9 d'une plan\xE8te,
+    puis activez la cam\xE9ra pour la trouver en vue r\xE9elle! Cliquez alors sur
+    la plan\xE8te pour la r\xE9cuperer."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}

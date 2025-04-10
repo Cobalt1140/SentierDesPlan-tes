@@ -13,8 +13,8 @@ public class TextBehaviour : MonoBehaviour
     public float typingSpeed = 0.1f; // Vitesse de frappe
     private Dictionary<string, string[]> traductions = new Dictionary<string, string[]>()
     {
-        { "French", new string[] { "" } },
-        { "English", new string[] { "" } }
+        { "French", new string[] { "Bienvenue au Sentier des Planètes! Votre objectif est de naviguer le campus de la Plaine en recherche des corps célestes qui composent notre système solaire. Utilisez la carte pour vous retrouver à proximité d'une planète, puis activez la caméra pour la trouver en vue réelle! Cliquez alors sur la planète pour la récuperer." } },
+        { "English", new string[] { "Welcome to the Planet Trail! Your goal is to navigate the Plain campus in search of the celestial bodies that make up our solar system. Use the map to find yourself near a planet, then activate the camera to find it in real-world view! Then click on the planet to retrieve it.\r\n\r\n" } }
     };
     private bool isTyping = false;
     private bool textFullyDisplayed = false;
