@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -31,13 +32,31 @@ public class ViewPlanetInfo : MonoBehaviour
         //{ "OG English", new string[] { "sun", "mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune" } }
     };
 
-    
+
+    private string[] PrefabPlanetList = new string[] { "sun", "mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune" };
+    private bool currentlyHeader = true;
+
 
     void Start()
     {
-        
+        string language = (PlayerPrefs.GetInt("LanguePreference", 0) == 0) ? "French" : "English";
         currentPlanet = CollectionStatic.getCurrentPlanet();
+        if (translations.ContainsKey(language))
+        {
+            int cpt = 0;
+            int index = 0;
+            foreach (string planet in PrefabPlanetList)
+            {
+                if (planet.Contains(currentPlanet))
+                {
+                    index = cpt;
+                }
+                cpt++;
+            }
+            title.text = translations[language][index];
 
+        }
+        
        
 
     }
@@ -54,6 +73,11 @@ public class ViewPlanetInfo : MonoBehaviour
         {
             Debug.Log("Tag non trouvé dans le dictionnaire : " + currentPlanet);
         }
+    }
+
+    public void switchHeaderAndBody() //switch between header text and body text of the planet
+    {
+
     }
     
 }
