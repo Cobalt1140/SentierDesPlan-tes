@@ -16,7 +16,7 @@ public class TextBehaviour : MonoBehaviour
         { "French", new string[] { "Bienvenue au Sentier des Planètes! Votre objectif est de naviguer le campus de la Plaine en recherche des corps célestes qui composent notre système solaire. Utilisez la carte pour vous retrouver à proximité d'une planète, puis activez la caméra pour la trouver en vue réelle! Cliquez alors sur la planète pour la récuperer." } },
         { "English", new string[] { "Welcome to the Planet Trail! Your goal is to navigate the Plain campus in search of the celestial bodies that make up our solar system. Use the map to find yourself near a planet, then activate the camera to find it in real-world view! Then click on the planet to retrieve it.\r\n\r\n" } }
     };
-    private bool isTyping = false;
+    //private bool isTyping = false;
     private bool textFullyDisplayed = false;
 
     void Start()
@@ -68,7 +68,7 @@ public class TextBehaviour : MonoBehaviour
             fullText = traductions[langue][0];
 
         }
-        isTyping = true;
+        //isTyping = true;
         textUI.text = "";
 
         foreach (char letter in fullText)
@@ -77,7 +77,7 @@ public class TextBehaviour : MonoBehaviour
             yield return new WaitForSeconds(typingSpeed);
         }
 
-        isTyping = false;
+        //isTyping = false;
         textFullyDisplayed = true;
         Debug.Log(" Texte affich� enti�rement.");
     }

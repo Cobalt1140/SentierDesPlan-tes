@@ -18,7 +18,7 @@ public class SettingsManager : MonoBehaviour
     private TextMeshProUGUI resetProgressBtnText;
     private Dictionary<string, string[]> translations = new Dictionary<string, string[]>()
     {
-        { "French", new string[] { "Paramètres", "Format: ", "Langue: ", "Enfant", "Adulte","Réinitialiser toute la progression" ,"Voulez-vous remmettre tous vos progrès à 0? (Vous pourrez de nouveau avoir une place dans le classement)" } },
+        { "French", new string[] { "Paramètres", "Format: ", "Langue: ", "Enfant", "Adulte","Réinitialiser toute la progression" ,"Voulez-vous remettre tous vos progrès à 0? (Vous pourrez de nouveau avoir une place dans le classement)" } },
         { "English", new string[] { "Settings", "Format: ", "Language: ", "Child", "Adult","Reset All Progress" ,"Are you sure you want to reset all progress? (You will be able to get a spot in the ranking again)" } }
     };
 

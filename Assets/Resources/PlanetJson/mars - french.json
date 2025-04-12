@@ -1,0 +1,15 @@
+{
+  "header": "Type : planète tellurique
+Rotation : 24.6 heures (~ 1 journée terrestre)
+Révolution : 687 journées terrestres (~ 2 années terrestres)
+Orbite elliptique : environ 228 millions de kilomètres du Soleil (~ 1.5 AU)
+Rayon : environ 3 400 km (~ la moitié de la taille de la terre)
+Gravité à la surface : 38% de la gravité terrestre. Une personne de 50 kg a l'impression de peser environ 19 kg. 
+Composition principale : Fer, nickel et soufre. De l’oxyde de fer (rouille) couvre sa surface.
+Satellites principaux : deux petites lunes nommées Phobos et Deimos
+
+ ",
+  "body": "Mars, notre voisine cosmique, fascine l’humanité depuis des siècles. Surnommée la \"Planète Rouge\" en raison de sa surface riche en oxyde de fer (rouille), elle est deux fois plus petite que la Terre mais abrite des paysages spectaculaires. On y trouve Olympus Mons, le plus grand volcan du système solaire, et Valles Marineris, un canyon de plus de 4 000 km. Autrefois, Mars possédait des rivières et des lacs, signes d’un passé aquatique. Aujourd’hui, de puissantes tempêtes de poussière peuvent recouvrir la planète pendant des mois. Avec des véhicules explorant son sol et des missions humaines en préparation, Mars reste l’une des destinations les plus fascinantes de l’exploration spatiale, offrant des indices sur notre passé et peut-être notre futur. ",
+  "image": "mars.jpg",
+  "author":"Pepijn Demol"
+}

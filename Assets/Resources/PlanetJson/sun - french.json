@@ -1,0 +1,13 @@
+{
+  "header": "Type : Gazeux
+Période de rotation : Le Soleil ne tourne pas comme une sphère solide : son équateur tourne plus vite (environ 25 jours terrestres) que ses pôles (environ 35 jours terrestres). 
+Période de révolution : Il est au centre du système solaire, cependant il tourne autour du centre galactique en 225 millions d'années.
+Rayon : 695 700 km (environ 109 rayons terrestres)  
+Gravité de surface : 274 m/s² (une personne de 50 kg aurait l'impression de peser 1400 kg !)  
+Composition de la surface : hydrogène (~74%), hélium (~24%), et une petite quantité d'éléments plus lourds (~2%) - dont l'oxygène, le carbone, le néon, l'azote, le magnésium, le fer et le silicium.
+Tous les objets du système solaire - les planètes, les astéroïdes et les comètes - gravitent autour du Soleil.
+",
+  "body": "Le Soleil est très grand - on pourrait y placer environ 1,3 million de Terres. Il se situe à environ 150 millions de km de la Terre. La lumière émise par le soleil met environ 8 minutes pour atteindre la Terre. Cependant, regarder le Soleil sans protection adéquate peut gravement endommager vos yeux. Le cœur du Soleil brûle à 15 millions de degrés et fusionne l'hydrogène en hélium. Chaque seconde, le Soleil libère suffisamment d'énergie pour alimenter la Terre pendant 500 000 ans ! Malheureusement, nous n'avons pas encore trouvé de moyen efficace de récolter cette énergie. Les éruptions solaires et les éjections de masse coronale sont à l’origine des magnifiques aurores (boréales et australes), et peuvent perturber les satellites et les réseaux électriques. Un flux constant de particules chargées, appelé vent solaire, s'échappe de sa surface et s'étend bien au-delà de Pluton !",
+  "image": "sun.jpg",
+  "author": "Gururaj Wagle"
+}

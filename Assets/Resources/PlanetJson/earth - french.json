@@ -1,0 +1,25 @@
+{
+  "header": "Type : Planète tellurique
+Période orbitale : 365.26 jours
+Durée du jour : 24h 
+Diamètre : 12 756 km	
+Masse : 6 x 1024 kg 	
+Atmosphère : 78% azote (N2), 21% oxygène (O2)
+Température de surface : ~15°C
+Lunes : La Lune
+Distance par rapport au Soleil : ~150 millions de km 
+Pression de surface : 1 atmosphère (101325 Pascal)  
+
+ ",
+  "body": "
+La Terre s'est formée il y a 4,54 milliards d'années. Elle possède un unique satellite naturel, la Lune, qui s'est formée peu après. L’interaction entre la Terre, la Lune et le soleil crée les marées. La Terre est la planète la plus dense du Système solaire ainsi que la plus grande et massive des quatre planètes telluriques.
+La Terre n’est pas tout à fait ronde: elle est légérement plus aplatie aux pôles et renflée à l’équateur. Cette différence est trop faible pour être percue par l'oeil humain sur des photos prises depuis l’espace.
+
+La Terre est le seul corps céleste connu pour abriter la vie.
+En 2024, plus de 8 milliards d'êtres humains vivent sur Terre et dépendent de sa biosphère et de ses ressources naturelles pour leur survie. 
+Son enveloppe rigide, appelée lithosphère, est divisée en différentes plaques tectoniques qui migrent de quelques centimètres par an. Environ 71 % de la surface de la planète est couverte d'eau, notamment des océans, mais aussi des lacs et rivières,  et les 29 % restants sont des continents et des îles. La majeure partie des régions polaires est couverte de glace: la banquise de l’Arctique au Nord, et le continent Antarctique au Sud.
+La structure interne de la Terre est géologiquement active, le noyau interne solide et le noyau externe liquide (composés tous deux essentiellement de fer) permettent de générer le champ magnétique terrestre par effet dynamo. Ce champ magnétique protège efficacement la Terre des rayons cosmiques ionisants nocifs pour la vie.
+ ",
+  "image": "earth.jpg",
+  "author":"Sophie Van Eck"
+}

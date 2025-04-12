@@ -1,0 +1,13 @@
+{
+  "header": "Type: Gas giant
+Rotation Period: 10 hours and 33 minutes
+Revolution Period: 29.5 Earth years
+Orbit: Saturn follows an elliptical orbit around the Sun, at a distance ranging from 1.35 to 1.51 billion km (9 to 10.1 times the distance from Earth)
+Radius: 58,232 km
+Surface Gravity: 10.4 m/s², so a 70 kg person would feel like they weigh 73.3 kg on Saturn (if there were a solid surface to stand on)
+Main Composition: Primarily hydrogen and helium, with traces of methane, ammonia, and other gases
+",
+  "body": "Saturn is the second-largest planet in the Solar System and is best known for its striking ring system, composed of countless ice and rock particles. Despite its massive size, Saturn is the least dense planet—it would float in a vast enough ocean. Saturn’s fast rotation creates strong winds and swirling storms, including the famous hexagonal storm at its north pole. The planet has over 80 known moons, including Titan, which has rivers, lakes, and a thick atmosphere rich in organic compounds. Saturn’s rings may be remnants of a destroyed moon or leftover material from the early Solar System, offering a glimpse into planetary formation.",
+  "image": "saturn.jpg",
+  "author":"Karan Dsilva"
+}
