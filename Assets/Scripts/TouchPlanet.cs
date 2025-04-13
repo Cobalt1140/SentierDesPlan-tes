@@ -12,7 +12,20 @@ public class TouchPlanet : MonoBehaviour
     private List<string> planetList = new List<string> { "earth", "jupiter", "mars",
         "mercury", "moon", "neptune", "pluton","saturn", "sun", "uranus", "venus" };
     private bool isAnimating = false;
-    
+
+    public AudioClip touchSound;  // Le son à jouer quand on touche une planète
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+    /*debug public void PlayTestSound()
+    {
+        if (touchSound != null && audioSource != null)
+            audioSource.PlayOneShot(touchSound);
+    }
+    */
 
     // Update is called once per frame
     void Update()
@@ -25,6 +38,7 @@ public class TouchPlanet : MonoBehaviour
                 DetectTouchOrClick(Input.GetTouch(0).position);
         }
         
+
     }
     //on check le tag du objet touché, on prends son nom et on l'ajoute en tant que int dans les PlayerPrefs
     void DetectTouchOrClick(Vector2 screenPosition)
@@ -41,6 +55,10 @@ public class TouchPlanet : MonoBehaviour
 
             if (planetList.Contains(hit.transform.tag))
             {
+                // Joue le son ici AVANT l’animation
+                if (touchSound != null && audioSource != null)
+                    audioSource.PlayOneShot(touchSound);
+
                 //debugText.text = hit.transform.tag.ToString()+" HAS BEEN HIT!";
                 PlayerPrefs.SetInt(hit.transform.tag, 1);
                 CollectionStatic.setCurrentPlanet(hit.transform.tag);
