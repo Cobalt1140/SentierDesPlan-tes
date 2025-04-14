@@ -1240,7 +1240,7 @@ MonoBehaviour:
   minZoom: 10
   maxZoom: 20
   panSpeed: 0.0003
-  markerPrefab: {fileID: 5040410843036695726, guid: b1df1cab81440a247b7c771422cfd6b4, type: 3}
+  markerPrefab: {fileID: 5040410843036695726, guid: 3c730cb065d3e9b4a86e83fdc9d589ef, type: 3}
   locationMarkerPrefab: {fileID: 2804258699475111388, guid: a2def71c555ef124f8128f10717343ec, type: 3}
   notificationText: {fileID: 501116065}
   points: []

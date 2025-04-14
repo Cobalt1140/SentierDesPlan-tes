@@ -5,16 +5,12 @@ using TMPro;
 using System;
 using UnityEngine.Networking;
 using System.IO;
-using UnityEngine.UI; // Pour accéder à Dropdown
 
 public class LocationStuff : MonoBehaviour
 {
     [Header("UI Debug")]
     public TMP_Text debugTxt;
     public TMP_Text secondDebugText;
-
-    [Header("UI Dropdown")]
-    public TMP_Dropdown planetDropdown; // Référence au dropdown à assigner dans l'inspector
 
     [Header("JSON")]
     public string jsonFileName = "planets.json";  // Nom du fichier JSON dans StreamingAssets
@@ -42,26 +38,8 @@ public class LocationStuff : MonoBehaviour
     private GPSLoc currLoc = new GPSLoc();
     private GPSLoc referenceLoc = null; // défini quand le GPS est prêt
 
-    // Planète actuellement sélectionnée dans le dropdown
-    private string selectedPlanetName = "";
-
     // Facteur pour convertir des degrés de latitude en mètres (~111.32 km/°)
     private const double metersPerDegreeLat = 111320.0;
-
-    // Distances astronomiques réelles (en millions de km)
-    private Dictionary<string, double> astronomicalDistances = new Dictionary<string, double>()
-    {
-        { "sun", 0 },           // Le Soleil est le centre de référence
-        { "mercury", 57.9 },    // Distance moyenne Soleil-Mercure en millions de km
-        { "venus", 108.2 },     // Distance moyenne Soleil-Vénus
-        { "earth", 149.6 },     // Distance moyenne Soleil-Terre
-        { "moon", 0.384 },      // Distance moyenne Terre-Lune en millions de km (pas du Soleil)
-        { "mars", 227.9 },      // Distance moyenne Soleil-Mars
-        { "jupiter", 778.5 },   // Distance moyenne Soleil-Jupiter
-        { "saturn", 1432.0 },   // Distance moyenne Soleil-Saturne
-        { "neptune", 4495.0 },  // Distance moyenne Soleil-Neptune
-        { "pluton", 5906.0 }    // Distance moyenne Soleil-Pluton
-    };
 
     IEnumerator Start()
     {
@@ -80,9 +58,6 @@ public class LocationStuff : MonoBehaviour
             if (debugTxt) debugTxt.text = "No planets loaded from JSON.";
             yield break;
         }
-
-        // Initialiser le dropdown avec les planètes
-        InitializeDropdown();
 
         // 3) Initialiser le GPS
         if (!Input.location.isEnabledByUser)
@@ -119,62 +94,9 @@ public class LocationStuff : MonoBehaviour
                 (float)Input.location.lastData.longitude
             );
 
+            if (debugTxt)
+                debugTxt.text = $"GPS active. Reference set to: {referenceLoc.lat:F6}, {referenceLoc.lon:F6}";
             Debug.Log("GPS active. Reference set to: " + referenceLoc.lat + ", " + referenceLoc.lon);
-        }
-    }
-
-    // Initialiser le dropdown avec les noms des planètes
-    private void InitializeDropdown()
-    {
-        if (planetDropdown == null) return;
-
-        // Vider le dropdown
-        planetDropdown.ClearOptions();
-
-        // Créer la liste des options
-        List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
-
-        // Ajouter une option "Sélectionner une planète" en premier
-        options.Add(new TMP_Dropdown.OptionData("Sélectionner une planète"));
-
-        // Ajouter chaque planète
-        foreach (var planet in planetList)
-        {
-            // Capitaliser la première lettre pour un meilleur affichage
-            string displayName = char.ToUpper(planet.planetName[0]) + planet.planetName.Substring(1);
-            options.Add(new TMP_Dropdown.OptionData(displayName));
-        }
-
-        // Mettre à jour le dropdown
-        planetDropdown.AddOptions(options);
-
-        // Ajouter un listener pour les changements de sélection
-        planetDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
-
-        // Sélectionner la première option par défaut
-        planetDropdown.value = 0;
-        selectedPlanetName = "";
-
-        // Message initial dans le debugTxt
-        if (debugTxt) debugTxt.text = "Sélectionnez une planète pour voir les informations de distance.";
-    }
-
-    // Méthode appelée quand la sélection du dropdown change
-    public void OnDropdownValueChanged(int index)
-    {
-        if (index == 0)
-        {
-            // "Sélectionner une planète" sélectionné
-            selectedPlanetName = "";
-            if (debugTxt) debugTxt.text = "Sélectionnez une planète pour voir les informations de distance.";
-        }
-        else if (index > 0 && index <= planetList.Count)
-        {
-            // Une planète spécifique sélectionnée
-            selectedPlanetName = planetList[index - 1].planetName;
-
-            // Mettre à jour immédiatement l'affichage des distances
-            UpdateDistanceDisplay();
         }
     }
 
@@ -184,7 +106,7 @@ public class LocationStuff : MonoBehaviour
 
         if (Input.location.status != LocationServiceStatus.Running)
         {
-            if (debugTxt) debugTxt.text = "GPS is disabled or not running.";
+            if (debugTxt) debugTxt.text = "GPS is disabled or not running."; //TODO ajouter un élément qui indique à l'utilisateur que la permission pour la caméra n'est pas permise
             return;
         }
 
@@ -192,16 +114,17 @@ public class LocationStuff : MonoBehaviour
         currLoc.lat = Input.location.lastData.latitude;
         currLoc.lon = Input.location.lastData.longitude;
 
-        // Si une planète est sélectionnée, mettre à jour l'affichage de la distance
-        if (!string.IsNullOrEmpty(selectedPlanetName))
-        {
-            UpdateDistanceDisplay();
-        }
+        // Affichage
+        string info = $"Current Position:\nLat: {currLoc.lat:F6}\nLon: {currLoc.lon:F6}\nRef: {referenceLoc.lat:F6},{referenceLoc.lon:F6}\n";
 
-        // Parcours de toutes les planètes pour faire apparaître les objets 3D
+        // Parcours de toutes les planètes
         foreach (var planet in planetList)
         {
-            // Instancier si pas déjà fait
+            // Calcul de la distance (pour debug)
+            double distMeters = DistanceInMeters(currLoc.lat, currLoc.lon, planet.gpsLatitude, planet.gpsLongitude);
+            info += $"\n- {planet.planetName}: {FormatDistance(distMeters)} away";
+
+            // Instancier si pas déjà
             if (!instantiatedObjects.ContainsKey(planet.planetName))
             {
                 // Chercher le prefab correspondant
@@ -213,6 +136,7 @@ public class LocationStuff : MonoBehaviour
                 }
                 else
                 {
+                    info += $"\nNo prefab found for '{planet.prefabId}'";
                     continue;
                 }
 
@@ -222,6 +146,7 @@ public class LocationStuff : MonoBehaviour
                 newObj.name = planet.planetName;
 
                 instantiatedObjects[planet.planetName] = newObj;
+                info += $"\nSpawned {planet.planetName} at {pos}";
             }
             else
             {
@@ -231,14 +156,37 @@ public class LocationStuff : MonoBehaviour
             }
         }
 
+        // --- Find the closest planet ---
+        GameObject closestPlanet = null;
+        double closestDist = double.MaxValue;
+        if (secondDebugText != null)
+        {
+            secondDebugText.text = "";
+        }
+        foreach (var kvp in instantiatedObjects)
+        {
+            GameObject planetObj = kvp.Value;
+            double dist = Vector3.Distance(planetObj.transform.position, Camera.main.transform.position);
+            secondDebugText.text += "\n Planet: " + planetObj.name + " " + dist;
+            if (dist < closestDist)
+            {
+                closestDist = dist;
+                closestPlanet = planetObj;
+
+            }
+        }
+        if (secondDebugText != null)
+        {
+            secondDebugText.text += "\n Closest Planet: " + closestPlanet.name + " " + closestDist.ToString();
+
+        }
+
         // --- Update Arrow Rotation ---
-        if (!string.IsNullOrEmpty(selectedPlanetName) &&
-            instantiatedObjects.ContainsKey(selectedPlanetName) &&
-            arrowUI != null)
+        if (closestPlanet != null && arrowUI != null)
         {
             arrowUI.gameObject.SetActive(true);
 
-            Vector3 toPlanet = instantiatedObjects[selectedPlanetName].transform.position - Camera.main.transform.position;
+            Vector3 toPlanet = closestPlanet.transform.position - Camera.main.transform.position;
             Vector3 camForward = Camera.main.transform.forward;
 
             // Project direction onto horizontal plane
@@ -248,59 +196,27 @@ public class LocationStuff : MonoBehaviour
             float angle = Vector3.SignedAngle(flatForward, flatToPlanet, Vector3.up);
 
             arrowUI.localEulerAngles = new Vector3(0, 0, -angle);  // Negative because UI rotates opposite
+
+            /*
+            Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0);
+            Vector3 planetScreenPos = mainCamera.WorldToScreenPoint(closestPlanet.transform.position);
+
+            Vector2 direction = (planetScreenPos - screenCenter).normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            arrowUI.rotation = Quaternion.Euler(0, 0, angle - 90);  // Subtract 90 if your arrow points up
+            secondDebugText.text += "\n Angle: "+angle;
+            */
+
         }
         else
         {
             arrowUI.gameObject.SetActive(false);
-        }
-    }
-
-    // Mettre à jour l'affichage des distances pour la planète sélectionnée
-    private void UpdateDistanceDisplay()
-    {
-        if (string.IsNullOrEmpty(selectedPlanetName) || !debugTxt) return;
-
-        // Chercher la planète sélectionnée
-        Planet selectedPlanet = null;
-        foreach (var planet in planetList)
-        {
-            if (planet.planetName == selectedPlanetName)
-            {
-                selectedPlanet = planet;
-                break;
-            }
+            secondDebugText.text += "\n Closest Planet is null";
         }
 
-        if (selectedPlanet == null) return;
 
-        // Calculer la distance réelle sur terre
-        double distMeters = DistanceInMeters(currLoc.lat, currLoc.lon,
-                                           selectedPlanet.gpsLatitude, selectedPlanet.gpsLongitude);
-
-        // Obtenir la distance astronomique
-        string astronomicalDistanceText = "N/A";
-        if (astronomicalDistances.ContainsKey(selectedPlanetName))
-        {
-            double distMillion = astronomicalDistances[selectedPlanetName];
-            if (distMillion < 1)
-            {
-                // Pour la Lune, afficher en milliers de km
-                astronomicalDistanceText = $"{distMillion * 1000:F0} mille km";
-            }
-            else
-            {
-                // Pour les autres planètes, afficher en millions de km
-                astronomicalDistanceText = $"{distMillion:F1} millions km";
-            }
-        }
-
-        // Construire le texte d'information
-        string info = $"🪐 {char.ToUpper(selectedPlanetName[0]) + selectedPlanetName.Substring(1)} 🪐\n\n";
-        info += $"Distance actuelle: {FormatDistance(distMeters)}\n\n";
-        info += $"Distance dans l'espace: {astronomicalDistanceText}";
-
-        // Mettre à jour le texte d'affichage
-        debugTxt.text = info;
+        if (debugTxt) debugTxt.text = info;
     }
 
     // Lecture du JSON (Planets)
@@ -372,13 +288,14 @@ public class LocationStuff : MonoBehaviour
     private double Rad2Deg(double rad) => rad / Math.PI * 180.0;
 }
 
-// Les classes restent les mêmes
+// Classe pour la structure du JSON
 [System.Serializable]
 public class PlanetDataWrapper
 {
     public List<Planet> planets;
 }
 
+// Classe correspondant à chaque planète dans le JSON
 [System.Serializable]
 public class Planet
 {
@@ -388,6 +305,7 @@ public class Planet
     public string prefabId;
 }
 
+// Stockage simple d'une position lat/lon
 [System.Serializable]
 public class GPSLoc
 {
@@ -397,6 +315,7 @@ public class GPSLoc
     public GPSLoc(double lat, double lon) { this.lat = lat; this.lon = lon; }
 }
 
+// Classe pour relier un prefab à un lat/lon
 [System.Serializable]
 public class GPSObject
 {
