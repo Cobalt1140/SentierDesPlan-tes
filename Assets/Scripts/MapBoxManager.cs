@@ -6,6 +6,7 @@ using Mapbox.Unity.Map;
 using Mapbox.Utils;
 using Mapbox.Unity;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 #if PLATFORM_ANDROID
 using UnityEngine.Android;
 #endif
@@ -24,15 +25,18 @@ public class MapboxMapManager : MonoBehaviour
     public float maxZoom = 18f;
 
     [Header("Pan Settings")]
-    public float panSpeed = 0.000005f; // plus fluide comme Google Maps
+    public float panSpeed = 0.000005f;
 
     [Header("Map Content")]
     public GameObject markerPrefab;
     public GameObject locationMarkerPrefab;
-    
+
+    [Header("Notification")]
+    public TMPro.TextMeshProUGUI notificationText;
 
     private AbstractMap map;
     private GameObject locationMarkerInstance;
+    private HashSet<string> notifiedPlanets = new HashSet<string>();
 
     [System.Serializable]
     public class MapPoint
@@ -149,7 +153,7 @@ public class MapboxMapManager : MonoBehaviour
 #else
         if (!File.Exists(path))
         {
-            Debug.LogError("❌ Fichier JSON non trouvé : " + path);
+            Debug.LogError(" Fichier JSON non trouvé : " + path);
             yield break;
         }
 
@@ -160,7 +164,7 @@ public class MapboxMapManager : MonoBehaviour
 
         if (planetDataList == null || planetDataList.planets == null)
         {
-            Debug.LogError("❌ Échec du parsing JSON.");
+            Debug.LogError(" Échec du parsing JSON.");
             yield break;
         }
 
@@ -176,7 +180,7 @@ public class MapboxMapManager : MonoBehaviour
             });
         }
 
-        Debug.Log($"✅ {points.Count} planètes chargées depuis le fichier JSON.");
+        Debug.Log($" {points.Count} planètes chargées depuis le fichier JSON.");
         PlaceMarkers();
     }
 
@@ -192,14 +196,14 @@ public class MapboxMapManager : MonoBehaviour
 
     void PlaceMarkers()
     {
-        Debug.Log($"📌 Nombre de points à placer : {points.Count}");
+        Debug.Log($" Nombre de points à placer : {points.Count}");
 
         foreach (var point in points)
         {
             Vector2d location = new Vector2d(point.latitude, point.longitude);
             Vector3 worldPosition = map.GeoToWorldPosition(location, true);
 
-            Debug.Log($"🪐 Placer {point.name} → {worldPosition}");
+            Debug.Log($" Placer {point.name} → {worldPosition}");
 
             GameObject marker = Instantiate(markerPrefab, worldPosition, Quaternion.identity);
             marker.name = point.name;
@@ -231,7 +235,40 @@ public class MapboxMapManager : MonoBehaviour
             Vector3 worldPos = map.GeoToWorldPosition(userLatLon, true);
 
             locationMarkerInstance.transform.position = worldPos;
+
+            foreach (var planet in points)
+            {
+                double dist = GetDistanceInMeters(lat, lon, planet.latitude, planet.longitude);
+                if (dist <= 10 && !notifiedPlanets.Contains(planet.name))
+                {
+                    notifiedPlanets.Add(planet.name);
+                    StartCoroutine(ShowNotification($" Tu es proche de {planet.name} !"));
+                }
+            }
         }
+    }
+
+    IEnumerator ShowNotification(string message)
+    {
+        if (notificationText != null)
+        {
+            notificationText.text = message;
+            notificationText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(4f);
+            notificationText.gameObject.SetActive(false);
+        }
+    }
+
+    double GetDistanceInMeters(double lat1, double lon1, double lat2, double lon2)
+    {
+        double R = 6371000;
+        double dLat = (lat2 - lat1) * (Mathf.PI / 180);
+        double dLon = (lon2 - lon1) * (Mathf.PI / 180);
+        double a = Mathf.Sin((float)dLat / 2) * Mathf.Sin((float)dLat / 2) +
+                   Mathf.Cos((float)(lat1 * Mathf.PI / 180)) * Mathf.Cos((float)(lat2 * Mathf.PI / 180)) *
+                   Mathf.Sin((float)dLon / 2) * Mathf.Sin((float)dLon / 2);
+        double c = 2 * Mathf.Atan2(Mathf.Sqrt((float)a), Mathf.Sqrt((float)(1 - a)));
+        return R * c;
     }
 
     public void CenterMapOnUser()
@@ -241,7 +278,6 @@ public class MapboxMapManager : MonoBehaviour
             double lat = Input.location.lastData.latitude;
             double lon = Input.location.lastData.longitude;
             Vector2d userLatLon = new Vector2d(lat, lon);
-            //map.SetCenterLatitudeLongitude(userLatLon);
             map.Initialize(userLatLon, (int)zoom);
         }
     }
@@ -260,7 +296,7 @@ public class MapboxMapManager : MonoBehaviour
             float currMag = (t0.position - t1.position).magnitude;
             float diff = currMag - prevMag;
 
-            zoom += diff * 0.002f; // plus doux et fluide comme Google Maps
+            zoom += diff * 0.002f;
             zoom = Mathf.Clamp(zoom, minZoom, maxZoom);
             map.UpdateMap(map.CenterLatitudeLongitude, zoom);
         }
