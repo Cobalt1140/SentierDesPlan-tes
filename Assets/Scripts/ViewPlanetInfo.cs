@@ -15,6 +15,7 @@ public class ViewPlanetInfo : MonoBehaviour
 {
     public TextMeshProUGUI title;
     public GameObject Viewport;
+    public TextMeshProUGUI mapBtn;
 
     private TextMeshProUGUI content;
     private Image image;
@@ -22,22 +23,24 @@ public class ViewPlanetInfo : MonoBehaviour
     string currentPlanet;
     private Dictionary<string, string[]> DicURLs = new Dictionary<string, string[]>()
     {
-        {"sun", new string[]{ "https://cnes.fr/dossiers/soleil", "https://science.nasa.gov/sun/" }  },
-        {"mercury",new string[]{ "https://cnes.fr/dossiers/planete-mercure", "https://science.nasa.gov/mercury/facts/" } },
-        {"venus", new string[]{ "https://cnes.fr/dossiers/planete-venus", "https://science.nasa.gov/venus/venus-facts/" } },
-        {"earth", new string[]{ "https://cnes.fr/dossiers/planete-terre", "https://science.nasa.gov/earth/facts/" } },
-        {"mars", new string[]{ "https://cnes.fr/dossiers/planete-mars","https://science.nasa.gov/mars/facts/" } },
-        {"jupiter",new string[]{"https://cnes.fr/dossiers/planete-jupiter", "https://science.nasa.gov/jupiter/jupiter-facts/" } },
-        {"saturn", new string[]{"https://cnes.fr/dossiers/planete-saturne", "https://science.nasa.gov/saturn/facts/" } },
-        {"uranus", new string[]{"https://cnes.fr/dossiers/planete-uranus", "https://science.nasa.gov/uranus/facts/" } },
-        {"neptune", new string[]{"https://cnes.fr/dossiers/planete-neptune", "https://science.nasa.gov/neptune/neptune-facts/" } }
+        //index 0-1 adult, 2-3 kids
+        //index 0-2 fr, 1-3 en
+        {"sun", new string[]{ "https://cnes.fr/dossiers/soleil", "https://science.nasa.gov/sun/", "https://www.youtube.com/watch?v=C6bKJJVV9ps", "https://www.youtube.com/watch?v=vQSECrMIygg" }  },
+        {"mercury",new string[]{ "https://cnes.fr/dossiers/planete-mercure", "https://science.nasa.gov/mercury/facts/", "https://www.youtube.com/watch?v=UygM7usAdDk", "https://www.youtube.com/watch?v=NWUsfud9PzM" } },
+        {"venus", new string[]{ "https://cnes.fr/dossiers/planete-venus", "https://science.nasa.gov/venus/venus-facts/", "https://www.youtube.com/watch?v=jba9KK8xpUM", "https://www.youtube.com/watch?v=UciCLg8g_4Y" } },
+        {"earth", new string[]{ "https://cnes.fr/dossiers/planete-terre", "https://science.nasa.gov/earth/facts/", "https://www.youtube.com/watch?v=tWd_TJmgoKQ", "https://www.youtube.com/watch?v=IDhapt7nw4A" } },
+        {"mars", new string[]{ "https://cnes.fr/dossiers/planete-mars","https://science.nasa.gov/mars/facts/", "https://www.youtube.com/watch?v=WI8yY4d_WCU", "https://www.youtube.com/watch?v=gr7ShbG231U" } },
+        {"jupiter",new string[]{"https://cnes.fr/dossiers/planete-jupiter", "https://science.nasa.gov/jupiter/jupiter-facts/", "https://www.youtube.com/watch?v=1cDveQcIXII", "https://www.youtube.com/watch?v=hz_fc69LdjY" } },
+        {"saturn", new string[]{"https://cnes.fr/dossiers/planete-saturne", "https://science.nasa.gov/saturn/facts/", "https://www.youtube.com/watch?v=8KQnnQ4xpSM", "https://www.youtube.com/watch?v=KjZf88aBGe8" } },
+        {"uranus", new string[]{"https://cnes.fr/dossiers/planete-uranus", "https://science.nasa.gov/uranus/facts/", "https://www.youtube.com/results?search_query=uranus+enfant" , "https://www.youtube.com/watch?v=63KonRAL6CA" } },
+        {"neptune", new string[]{"https://cnes.fr/dossiers/planete-neptune", "https://science.nasa.gov/neptune/neptune-facts/", "https://www.youtube.com/watch?v=SUAINKWOMjA", "https://www.youtube.com/watch?v=VM22MyLaRSs" } }
 
 
     };
     private Dictionary<string, string[]> translations = new Dictionary<string, string[]>()
     {
-        { "French", new string[] { "Le Soleil", "Mercure", "Venus", "La Terre", "Mars", "Jupiter", "Saturne", "Uranus", "Neptune"} },
-        { "English", new string[] { "The Sun", "Mercury", "Venus", "The Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune" } },
+        { "French", new string[] { "Le Soleil", "Mercure", "Venus", "La Terre", "Mars", "Jupiter", "Saturne", "Uranus", "Neptune", "Carte" } },
+        { "English", new string[] { "The Sun", "Mercury", "Venus", "The Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Map" } },
         //{ "OG English", new string[] { "sun", "mercury", "venus", "earth", "mars", "jupiter", "saturn", "uranus", "neptune" } }
     };
 
@@ -84,6 +87,8 @@ public class ViewPlanetInfo : MonoBehaviour
             currentlyHeader = true;
             content.text = planetInfo.header;
             image.sprite = Resources.Load<Sprite>("PlanetImages/" + currentPlanet);
+            mapBtn.text = translations[language][9];
+
             
         }
         
@@ -97,7 +102,12 @@ public class ViewPlanetInfo : MonoBehaviour
 
         if (DicURLs.ContainsKey(currentPlanet))
         {
-            string URL = DicURLs[currentPlanet][PlayerPrefs.GetInt("LanguePreference",0)];
+            int index = PlayerPrefs.GetInt("LanguePreference", 0);
+            if (PlayerPrefs.GetInt("AgePreference", 0) == 0) // 0 = child, 1 = adult
+            {
+                index += 2;
+            }
+            string URL = DicURLs[currentPlanet][index];
             Application.OpenURL(URL);
         }
         else

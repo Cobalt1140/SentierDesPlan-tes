@@ -1,11 +1,11 @@
 {
-  "header": "•	Type: Telluric planet
-•	Rotation Period: 58.6 days
-•	Revolution Period: 88 days (3/2 times the rotation period)
-•	Orbit: Mercury sits on an elliptical orbit, with distance to the Sun varying between 46 and 70 million km (0.3 to 0.46 times the distance to Earth)
-•	Radius: 2440 km
-•	Surface gravity = 3.7 m/s^2, so a 70 kg person, could weight 25.9 kg on Mercury 	
-•	Main composition: Silicate core, iron core that occupies a sizeable fraction of the planet ",
+  "header": "•Type: Telluric planet
+•Rotation Period: 58.6 days
+•Revolution Period: 88 days (3/2 times the rotation period)
+•Orbit: Mercury sits on an elliptical orbit, with distance to the Sun varying between 46 and 70 million km (0.3 to 0.46 times the distance to Earth)
+•Radius: 2440 km
+•Surface gravity = 3.7 m/s^2, so a 70 kg person, could weight 25.9 kg on Mercury 	
+•Main composition: Silicate core, iron core that occupies a sizeable fraction of the planet ",
   "body": "Mercury’s unusual rotation means that if you saw a sunrise, you’d have to wait for a full Mercurian year (88 Earth days) before sunset. One side of Mercury stays in daylight for months, reaching 420 C, while the night side drops to –170 C. Unlike most planets, Mercury follows a highly elliptical orbit, varying its distance from the Sun by 1.5 times. The path around the star doesn’t stay in the same place but turns slowly over time. This movement is called precession of Mercury and couldn’t be explained until Einstein’s theory of general relativity in 1916 provided the answer. This was the first major proof of relativity, showing that Mercury’s orbit is affected by the Sun’s warping of spacetime. ",
   "image": "mercury.jpg",
   "author": "Pawel Krynski"

@@ -24,24 +24,14 @@
             "gpsLongitude":4.397959504527449,
             "prefabId": "mercury"
         },
-        {
-            "planetName": "moon",
-            "gpsLatitude": 50.81824826359522,
-            "gpsLongitude":4.397213495277811,
-            "prefabId": "moon"
-        },
+        
         {
             "planetName": "neptune",
             "gpsLatitude": 50.879700,
             "gpsLongitude": 4.404759,
             "prefabId": "neptune"
         },
-        {
-            "planetName": "pluton",
-            "gpsLatitude": 50.820080,
-            "gpsLongitude": 4.399698,
-            "prefabId": "pluton"
-        },
+        
         {
             "planetName": "saturn",
             "gpsLatitude": 50.83898135727509,

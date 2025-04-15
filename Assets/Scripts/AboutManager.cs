@@ -10,8 +10,8 @@ public class AboutManager : MonoBehaviour
 
     private Dictionary<string, string[]> translations = new Dictionary<string, string[]>()
     {
-        { "French", new string[] { "À Propos", "Crédits:\n" } },
-        { "English", new string[] { "About", "Credits:\n" } }
+        { "French", new string[] { "À Propos", "Crédits:\n","\n \n Cette application est une collaboration entre la HELB et l'ULB, dans les domaines de l'informatique et de l'astronomie." } },
+        { "English", new string[] { "About", "Credits:\n", "\n \n This application is a collaboration between the HELB and the ULB, in the domains of computer science and astronomy." } }
     };
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,8 @@ public class AboutManager : MonoBehaviour
         if (translations.ContainsKey(language))
         {
             title.text = translations[language][0];
-            content.text = translations[language][1] + credits;
+            content.text = translations[language][1] + credits + translations[language][2];
+            
         }
 
     }
