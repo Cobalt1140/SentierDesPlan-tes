@@ -214,16 +214,36 @@ public class MapboxMapManager : MonoBehaviour
 
     void UpdateMarkers()
     {
+        float minScale = 0.1f; // encore plus petit au zoom max
+        float maxScale = 1.2f;
+        float t = (zoom - minZoom) / (maxZoom - minZoom);
+        float dynamicScale = Mathf.Lerp(maxScale, minScale, t);
+
         foreach (var marker in spawnedMarkers)
         {
             MapPoint pointData = points.Find(p => p.name == marker.name);
             if (pointData != null)
             {
                 Vector2d location = new Vector2d(pointData.latitude, pointData.longitude);
-                marker.transform.position = map.GeoToWorldPosition(location, true);
+                Vector3 worldPos = map.GeoToWorldPosition(location, true);
+
+                // Décalage vertical pour ne pas masquer l'utilisateur
+                worldPos += Vector3.up * 0.5f;
+
+                marker.transform.position = worldPos;
+                marker.transform.localScale = Vector3.one * dynamicScale;
+
+                // Pour UI markers (optionnel)
+                RectTransform rt = marker.GetComponent<RectTransform>();
+                if (rt != null)
+                {
+                    rt.sizeDelta = Vector2.one * (dynamicScale * 100f);
+                }
             }
         }
     }
+
+
 
     void UpdateUserLocation()
     {
@@ -234,7 +254,8 @@ public class MapboxMapManager : MonoBehaviour
             Vector2d userLatLon = new Vector2d(lat, lon);
             Vector3 worldPos = map.GeoToWorldPosition(userLatLon, true);
 
-            locationMarkerInstance.transform.position = worldPos;
+            // Déplacement du marqueur utilisateur légèrement plus haut que les planètes
+            locationMarkerInstance.transform.position = worldPos + Vector3.up * 1f;
 
             foreach (var planet in points)
             {
@@ -247,6 +268,7 @@ public class MapboxMapManager : MonoBehaviour
             }
         }
     }
+
 
     IEnumerator ShowNotification(string message)
     {
